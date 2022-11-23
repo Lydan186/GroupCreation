@@ -9,7 +9,6 @@ import java.io.File;
 import java.io.FileNotFoundException;
 import java.io.FileReader;
 import java.io.IOException;
-import java.util.Scanner;
 import javax.swing.JFileChooser;
 import javax.swing.JOptionPane;
 import javax.swing.filechooser.FileNameExtensionFilter;
@@ -20,68 +19,86 @@ import javax.swing.filechooser.FileNameExtensionFilter;
  */
 public class Main {
 
+    static Student studentData[];
+
     /**
      * @param args the command line arguments
+     * @throws java.io.FileNotFoundException
      */
     public static void main(String[] args) throws FileNotFoundException, IOException {
-        
-        String posi = JOptionPane.showInputDialog(null, "Digite la opción 1"
-                + "si desea cargar el archivo \nDigite la opcion 2 si desea "
-                + "ver la lista de estudiantes \nDigite la opcion 3 si desea"
-                + " hacer los grupos de estudiantes \nDigite la opcion 4 si"
-                + " desea salir del programa");
 
-        int cases = Integer.parseInt(posi);
-        switch (cases) {
+        int cases;
+        do {
+            String posi = JOptionPane.showInputDialog(null, "Digite la opción 1"
+                    + "si desea cargar el archivo \nDigite la opcion 2 si desea "
+                    + "ver la lista de estudiantes \nDigite la opcion 3 si desea"
+                    + " hacer los grupos de estudiantes \nDigite la opcion 4 si"
+                    + " desea salir del programa");
 
-            case 1:
-                JFileChooser file = new JFileChooser();
-                file.setFileSelectionMode(JFileChooser.FILES_AND_DIRECTORIES);
-                FileNameExtensionFilter txtFilter = new FileNameExtensionFilter("txt", "txt");
-                file.setFileFilter(txtFilter);
-                file.showOpenDialog(file);
-                File files = file.getSelectedFile();
-                
-                break;
-            case 2:
-//                BufferedReader reader = new BufferedReader(new FileReader(files));
-//                String strCurrentLine;
-//                while ((strCurrentLine = reader.readLine()) != null) {
-//                    System.out.println(strCurrentLine);
-//                }
-//                System.out.println(strCurrentLine);
-                break;
-            case 3:
-                list();
-                break;
-            case 4:
-                break;
+            cases = Integer.parseInt(posi);
 
-        }
+            switch (cases) {
 
+                case 1:
+                    txtReader();
+                    break;
+                case 2:
+                    for (int i = 0; i < studentData.length; i++) {
+                        System.out.println(studentData[i].getStudentId());
+                    }
+                    break;
+                case 3:
 
+                    break;
+                case 4:
+                    System.out.println("gracias");
+                    break;
+
+            }
+
+        } while (cases != 4);
+    }
+
+    public static void txtReader() throws FileNotFoundException, IOException {
+
+        JFileChooser chooser = new JFileChooser();
+        chooser.setFileSelectionMode(JFileChooser.FILES_AND_DIRECTORIES);
+        FileNameExtensionFilter txtFilter = new FileNameExtensionFilter("txt", "txt");
+        chooser.setFileFilter(txtFilter);
+        chooser.showOpenDialog(chooser);
+        chooser.getSelectedFile();
+        System.out.println("Se subio el registro");
 
     }
-        public static void list() throws FileNotFoundException, IOException{
-        
-        
-                String pos = JOptionPane.showInputDialog(null, "Digite la opción a elegir");
 
-        int number = Integer.parseInt(pos);
-        switch (number) {
+    public void split(File chooser) throws FileNotFoundException, IOException {
+        int i = 0;
+        String strCurrentLine;
 
-            case 1:
-                BufferedReader reader = new BufferedReader(new FileReader("C:\\Users\\dilan\\OneDrive\\Documentos\\cursos de la UCR\\programación 1\\reporte.txt"));
-                String strCurrentLine;
+        BufferedReader objReader = new BufferedReader(new FileReader(chooser.getAbsolutePath()));
+        while ((strCurrentLine = objReader.readLine()) != null) {
+            String[] data;
+            data = strCurrentLine.split(",");
+            Student student = new Student(data[0], data[1], data[2], data[3], data[4]);
 
-                while ((strCurrentLine = reader.readLine()) != null) {
-                    System.out.println(strCurrentLine);
-                }
-                System.out.println(strCurrentLine);
-                break;
+            studentData = newVector(student, i);
+            i++;
 
         }
-        
+
+    }
+
+    private Student[] newVector(Student student, int i) {
+
+        Student[] copyStudend = new Student[i + 1];
+        copyStudend[i] = student;
+        if (i >= 1) {
+            for (int j = 0; j < studentData.length; j++) {
+                copyStudend[j] = studentData[j];
+            }
+            copyStudend[i] = student;
         }
+        return copyStudend;
+    }
 
 }

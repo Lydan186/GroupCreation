@@ -8,23 +8,64 @@ package project2;
  *
  * @author dilan
  */
-public class Student extends Person{
+public class Student{
+        private String name;
+    private String gender;
+    private String email;
     private String studentId;
     private String geographicLocation;
 
     public Student() {
     }
 
-    public Student(String studentId, String geographicLocation) {
+    public Student(String name, String gender, String email, String studentId, String geographicLocation) {
+        this.name = name;
+        this.gender = gender;
+        this.email = email;
         this.studentId = studentId;
         this.geographicLocation = geographicLocation;
     }
 
-    public Student(String studentId, String geographicLocation, String name, 
-            String gender, String email) {
-        super(name, gender, email);
-        this.studentId = studentId;
-        this.geographicLocation = geographicLocation;
+    /**
+     * @return the name
+     */
+    public String getName() {
+        return name;
+    }
+
+    /**
+     * @param name the name to set
+     */
+    public void setName(String name) {
+        this.name = name;
+    }
+
+    /**
+     * @return the gender
+     */
+    public String getGender() {
+        return gender;
+    }
+
+    /**
+     * @param gender the gender to set
+     */
+    public void setGender(String gender) {
+        this.gender = gender;
+    }
+
+    /**
+     * @return the email
+     */
+    public String getEmail() {
+        return email;
+    }
+
+    /**
+     * @param email the email to set
+     */
+    public void setEmail(String email) {
+        this.email = email;
     }
 
     /**
@@ -57,8 +98,9 @@ public class Student extends Person{
 
     @Override
     public String toString() {
-        return super.toString()+"Student{" + "studentId=" + studentId + 
-                ", geographicLocation=" + geographicLocation + '}';
+        return "Student{" + "name=" + name + ", gender=" + gender + ", email=" + email + ", studentId=" + studentId + ", geographicLocation=" + geographicLocation + '}';
     }
+
+    
     
 }
