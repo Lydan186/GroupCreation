@@ -30,7 +30,7 @@ public class Main {
         int cases;
         do {
             String posi = JOptionPane.showInputDialog(null, "Digite la opción 1"
-                    + "si desea cargar el archivo \nDigite la opcion 2 si desea "
+                    + " si desea cargar el archivo \nDigite la opcion 2 si desea "
                     + "ver la lista de estudiantes \nDigite la opcion 3 si desea"
                     + " hacer los grupos de estudiantes \nDigite la opcion 4 si"
                     + " desea salir del programa");
@@ -44,11 +44,13 @@ public class Main {
                     break;
                 case 2:
                     for (int i = 0; i < studentData.length; i++) {
-                        System.out.println(studentData[i].getStudentId());
+                        System.out.println(studentData[i].toString());
                     }
+                    
+                    System.out.println(" ");
                     break;
                 case 3:
-
+                      groupMenu();
                     break;
                 case 4:
                     System.out.println("gracias");
@@ -68,27 +70,33 @@ public class Main {
         chooser.showOpenDialog(chooser);
         chooser.getSelectedFile();
         System.out.println("Se subio el registro");
-
+        split(chooser.getSelectedFile());
     }
 
-    public void split(File chooser) throws FileNotFoundException, IOException {
+    public static void split(File chooser) throws FileNotFoundException, IOException {
         int i = 0;
         String strCurrentLine;
 
         BufferedReader objReader = new BufferedReader(new FileReader(chooser.getAbsolutePath()));
         while ((strCurrentLine = objReader.readLine()) != null) {
-            String[] data;
-            data = strCurrentLine.split(",");
-            Student student = new Student(data[0], data[1], data[2], data[3], data[4]);
-
-            studentData = newVector(student, i);
-            i++;
+            try {
+                String[] data;
+                data = strCurrentLine.split(",");
+              //
+              System.out.println(strCurrentLine);
+                Student student = new Student(data[0], data[1], data[2], data[3], data[4]);
+                System.out.println(i);
+                studentData = newVector(student, i);
+                i++;
+            } catch (Exception e) {
+                System.out.println(e.getMessage());
+            }
 
         }
 
     }
 
-    private Student[] newVector(Student student, int i) {
+    private static Student[] newVector(Student student, int i) {
 
         Student[] copyStudend = new Student[i + 1];
         copyStudend[i] = student;
@@ -100,5 +108,39 @@ public class Main {
         }
         return copyStudend;
     }
+    
+    
+    public static void groupMenu(){
+    int op;
+                do {
+            String posi = JOptionPane.showInputDialog(null, "Digite la opción 1"
+                    + " si desea crear un grupo de trabajo \nDigite la opcion 2 si desea "
+                    + "ver la lista de grupos formados \nDigite la opcion 3 si desea"
+                    + " editar algunos de los grupos disponibles \nDigite la opcion 4 si"
+                    + " desea volver al menu principal");
+
+            op = Integer.parseInt(posi);
+
+            switch (op) {
+
+                case 1:
+                    
+                    break;
+                case 2:
+                    
+                    break;
+                case 3:
+                       
+                    break;
+                case 4:
+                    System.out.println("gracias");
+                    break;
+
+            }
+
+        } while (op != 4);
+    
+    }
+    
 
 }

@@ -9,20 +9,22 @@ package project2;
  * @author dilan
  */
 public class Student{
-        private String name;
-    private String gender;
     private String email;
+    private String name;
+    private String gender;
     private String studentId;
     private String geographicLocation;
 
     public Student() {
     }
 
-    public Student(String name, String gender, String email, String studentId, String geographicLocation) {
-        this.name = name;
-        this.gender = gender;
-        this.email = email;
+    public Student(String studentId, String name, String email, String gender, String geographicLocation) {
+        
+        
         this.studentId = studentId;
+        this.name = name;
+        this.email = email;
+        this.gender = gender;
         this.geographicLocation = geographicLocation;
     }
 
@@ -98,7 +100,7 @@ public class Student{
 
     @Override
     public String toString() {
-        return "Student{" + "name=" + name + ", gender=" + gender + ", email=" + email + ", studentId=" + studentId + ", geographicLocation=" + geographicLocation + '}';
+        return " Carne Estudiantil: " + studentId + "   Nombre completo: " +  name + "   Correo Institucional: " + email + "   Genero: " + gender +   "   Ubicación Geografica: " + geographicLocation ;
     }
 
     
