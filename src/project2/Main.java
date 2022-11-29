@@ -34,8 +34,9 @@ public class Main {
             String posi = JOptionPane.showInputDialog(null, "Digite la opción 1"
                     + " si desea cargar el archivo \nDigite la opcion 2 si desea "
                     + "ver la lista de estudiantes \nDigite la opcion 3 si desea"
-                    + " hacer los grupos de estudiantes \nDigite la opcion 4 si"
-                    + " desea salir del programa");
+                    + " hacer los grupos de estudiantes \nDigite la opcion 4 "
+                    + " para enviar un correo con el archivo con los grupos"
+                    + " \nDigite la opcion 5 si desea salir del programa");
 
             cases = Integer.parseInt(posi);
 
@@ -52,15 +53,18 @@ public class Main {
                     System.out.println(" ");
                     break;
                 case 3:
-                      sendEmail.sendMail();
+                      
                     break;
                 case 4:
+                    sendEmail.sendMail();
+                    break;
+                case 5:
                     System.out.println("gracias");
                     break;
 
             }
 
-        } while (cases != 4);
+        } while (cases != 5);
     }
 
     public static void txtReader() throws FileNotFoundException, IOException {
