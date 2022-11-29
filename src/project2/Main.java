@@ -9,9 +9,11 @@ import java.io.File;
 import java.io.FileNotFoundException;
 import java.io.FileReader;
 import java.io.IOException;
+import javax.mail.MessagingException;
 import javax.swing.JFileChooser;
 import javax.swing.JOptionPane;
 import javax.swing.filechooser.FileNameExtensionFilter;
+import procedure.sendEmail;
 
 /**
  *
@@ -25,7 +27,7 @@ public class Main {
      * @param args the command line arguments
      * @throws java.io.FileNotFoundException
      */
-    public static void main(String[] args) throws FileNotFoundException, IOException {
+    public static void main(String[] args) throws FileNotFoundException, IOException, MessagingException {
 
         int cases;
         do {
@@ -50,7 +52,7 @@ public class Main {
                     System.out.println(" ");
                     break;
                 case 3:
-                      groupMenu();
+                      sendEmail.sendMail();
                     break;
                 case 4:
                     System.out.println("gracias");
