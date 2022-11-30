@@ -38,7 +38,8 @@ public class sendEmail {
     static String password = "wdsvhouvpnlshako";
     static String destinyMail = "";
     static String route;
-    
+    static String message;
+    static String affair;
     
 /**
  * Procedimiento encargado para realizar el envio del correo electronico junto 
@@ -73,8 +74,9 @@ public class sendEmail {
     Session session = Session.getDefaultInstance(p);
     
     BodyPart text = new MimeBodyPart();
-    
-        text.setText("Envio de documento con los grupos formados");
+    affair = JOptionPane.showInputDialog(null, "Digite el asunto");
+     message = JOptionPane.showInputDialog(null, "Digite el mensaje del correo");
+        text.setText(message);
         BodyPart attached = new MimeBodyPart();
         attached.setDataHandler(new DataHandler (new FileDataSource(fileChooser.getSelectedFile())));
         attached.setFileName(fileChooser.getSelectedFile().getName());
@@ -89,7 +91,7 @@ public class sendEmail {
     MimeMessage message = new MimeMessage(session);
     message.setFrom(new InternetAddress(email));
     message.addRecipient(Message.RecipientType.TO, new InternetAddress(destinyMail));
-    message.setSubject("Envio de Grupos");
+    message.setSubject(affair);
     message.setContent(m);
     
     Transport t = session.getTransport("smtp");

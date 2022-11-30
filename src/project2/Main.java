@@ -22,6 +22,8 @@ import procedure.sendEmail;
 public class Main {
 
     static Student studentData[];
+    static boolean exit = false;
+    static String[] data;
 
     /**
      * @param args the command line arguments
@@ -30,7 +32,15 @@ public class Main {
      */
     public static void main(String[] args) throws FileNotFoundException, IOException, MessagingException {
 
+        menu(exit);
+    }
+
+    public static void menu(boolean exit) throws IOException, MessagingException {
+        exit = false;
         int cases;
+        if (exit = false) {
+
+        }
         do {
             String posi = JOptionPane.showInputDialog(null, "Digite la opción 1"
                     + " si desea cargar el archivo \nDigite la opcion 2 si desea "
@@ -47,10 +57,7 @@ public class Main {
                     txtReader();
                     break;
                 case 2:
-                    for (int i = 0; i < studentData.length; i++) {
-                        System.out.println(studentData[i].toString());
-                    }
-
+                    seeStudents(studentData, 0);
                     System.out.println(" ");
                     break;
                 case 3:
@@ -60,14 +67,34 @@ public class Main {
                     sendEmail.sendMail();
                     break;
                 case 5:
+                    exit = true;
                     System.out.println("gracias");
+
                     break;
 
             }
+menu(exit = true);
+        } while (exit = false);
+        
 
-        } while (cases != 5);
     }
+/**
+ * Procedimiento para poder ver a los datos de los estudiantes.
+ * @param studentData
+ * @param i 
+ */
+    public static void seeStudents(Student studentData[], int i) {
+        if (i != studentData.length) {
+            System.out.println(studentData[i].toString());
+            seeStudents(studentData, i + 1);
+        }
 
+    }
+/**
+ * Procedimiento para elegir un archivo.
+ * @throws FileNotFoundException
+ * @throws IOException 
+ */
     public static void txtReader() throws FileNotFoundException, IOException {
 
         JFileChooser chooser = new JFileChooser();
@@ -79,7 +106,12 @@ public class Main {
         System.out.println("Se subio el registro");
         split(chooser.getSelectedFile());
     }
-
+/**
+ * Procedimiento para dividir un archivo y guardarlo en un array.
+ * @param chooser
+ * @throws FileNotFoundException
+ * @throws IOException 
+ */
     public static void split(File chooser) throws FileNotFoundException, IOException {
         int i = 0;
         String strCurrentLine;
@@ -99,7 +131,12 @@ public class Main {
         }
 
     }
-
+/**
+ * Procedimiento para copiar un archivo y aumentar el tamaño del vector.
+ * @param student
+ * @param i
+ * @return 
+ */
     private static Student[] newVector(Student student, int i) {
 
         Student[] copyStudend = new Student[i + 1];
@@ -112,7 +149,9 @@ public class Main {
         }
         return copyStudend;
     }
-
+/**
+ * Procedimiento para poder visualizar un menu para los grupos de estudiantes.
+ */
     public static void groupMenu() {
         int op;
         do {
