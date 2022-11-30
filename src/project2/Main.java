@@ -26,6 +26,7 @@ public class Main {
     /**
      * @param args the command line arguments
      * @throws java.io.FileNotFoundException
+     * @throws javax.mail.MessagingException
      */
     public static void main(String[] args) throws FileNotFoundException, IOException, MessagingException {
 
