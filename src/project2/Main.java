@@ -49,11 +49,11 @@ public class Main {
                     for (int i = 0; i < studentData.length; i++) {
                         System.out.println(studentData[i].toString());
                     }
-                    
+
                     System.out.println(" ");
                     break;
                 case 3:
-                      
+
                     break;
                 case 4:
                     sendEmail.sendMail();
@@ -88,10 +88,7 @@ public class Main {
             try {
                 String[] data;
                 data = strCurrentLine.split(",");
-              //
-              System.out.println(strCurrentLine);
                 Student student = new Student(data[0], data[1], data[2], data[3], data[4]);
-                System.out.println(i);
                 studentData = newVector(student, i);
                 i++;
             } catch (Exception e) {
@@ -114,11 +111,10 @@ public class Main {
         }
         return copyStudend;
     }
-    
-    
-    public static void groupMenu(){
-    int op;
-                do {
+
+    public static void groupMenu() {
+        int op;
+        do {
             String posi = JOptionPane.showInputDialog(null, "Digite la opción 1"
                     + " si desea crear un grupo de trabajo \nDigite la opcion 2 si desea "
                     + "ver la lista de grupos formados \nDigite la opcion 3 si desea"
@@ -130,13 +126,13 @@ public class Main {
             switch (op) {
 
                 case 1:
-                    
+
                     break;
                 case 2:
-                    
+
                     break;
                 case 3:
-                       
+
                     break;
                 case 4:
                     System.out.println("gracias");
@@ -145,8 +141,7 @@ public class Main {
             }
 
         } while (op != 4);
-    
+
     }
-    
 
 }
