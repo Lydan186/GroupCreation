@@ -179,7 +179,7 @@ public class process {
                 break;
 
                 case 2:
-
+                    groupGender(studentData);
                     break;
                 case 3:
 
@@ -273,5 +273,78 @@ public class process {
         }
 
     }
+    
+    
+     public static void groupGender(Student[] student){
+         
+         
+         
+        JFileChooser chooser = new JFileChooser(); 
+        Component parent = null;
+        int returnVal = chooser.showSaveDialog(parent);
+        if (returnVal == JFileChooser.APPROVE_OPTION) {
+            
+            try {
+            File h = chooser.getSelectedFile();
+             FileWriter write=new FileWriter(h,true);
+
+            
+            write.write(("Grupos por genero: "+ "\n" ));
+                          
+             write.write("Grupo: 1" + "\n");
+              
+             for (int j = 0; j < studentData.length; j++) {
+                 
+                 if (((studentData[j].getGender()).equals("M"))) {
+                    write.write("Nombre: " + studentData[j].getName() + "    Carnet: " + studentData[j].getStudentId()+"\n");
+                 }
+                       
+             }   
+             write.write("\n");
+ 
+            write.write("Grupo: 2"+"\n");
+              
+             for (int j = 0; j < studentData.length; j++) {
+                 
+                 if (((studentData[j].getGender()).equals("F"))) {
+                    write.write("Nombre: " + studentData[j].getName() + "    Carnet: " + studentData[j].getStudentId()+"\n");
+                 }
+                       
+             }   
+             write.write("\n");   
+            write.close();
+        } catch (Exception e) {
+            System.out.println(e.getMessage());
+            System.out.println("-------------------------------------------");
+        }
+    }
+         
+         
+         
+         
+         
+         
+         
+         
+         
+         
+         
+         
+         
+         
+         
+         
+         
+         
+         
+         
+             
+             
+            
+                                   
+     }
+    
+    
+    
 
 }
