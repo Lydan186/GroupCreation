@@ -9,6 +9,9 @@ package project2;
  * @author dilan
  */
 public class Student{
+    
+    private boolean state;
+    
     private String email;
     private String name;
     private String gender;
@@ -18,14 +21,42 @@ public class Student{
     public Student() {
     }
 
-    public Student(String studentId, String name, String email, String gender, String geographicLocation) {
+    public Student( String studentId,String name, String email,  String gender,String geographicLocation, boolean state) {
         
-        
-        this.studentId = studentId;
-        this.name = name;
+        this.state = state;
         this.email = email;
+        this.name = name;
         this.gender = gender;
+        this.studentId = studentId;
         this.geographicLocation = geographicLocation;
+    }
+
+    /**
+     * @return the state
+     */
+    public boolean isState() {
+        return state;
+    }
+
+    /**
+     * @param state the state to set
+     */
+    public void setState(boolean state) {
+        this.state = state;
+    }
+
+    /**
+     * @return the email
+     */
+    public String getEmail() {
+        return email;
+    }
+
+    /**
+     * @param email the email to set
+     */
+    public void setEmail(String email) {
+        this.email = email;
     }
 
     /**
@@ -54,20 +85,6 @@ public class Student{
      */
     public void setGender(String gender) {
         this.gender = gender;
-    }
-
-    /**
-     * @return the email
-     */
-    public String getEmail() {
-        return email;
-    }
-
-    /**
-     * @param email the email to set
-     */
-    public void setEmail(String email) {
-        this.email = email;
     }
 
     /**
@@ -100,9 +117,17 @@ public class Student{
 
     @Override
     public String toString() {
-        return " Carne Estudiantil: " + studentId + "   Nombre completo: " +  name + "   Correo Institucional: " + email + "   Genero: " + gender +   "   Ubicación Geografica: " + geographicLocation ;
+        return " Carnet: " + studentId + ", Nombre; " + name + ", Correo Institucional: " + email +  ", Genero: " + gender +  ", Ubicación Geografica" + geographicLocation;
+    }
+
+    void getState(boolean b) {
+        throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
+    }
+
+    void isState(boolean b) {
+        throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
     }
 
     
-    
+
 }

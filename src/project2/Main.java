@@ -4,15 +4,18 @@
  */
 package project2;
 
+import java.awt.Component;
 import java.io.BufferedReader;
 import java.io.File;
 import java.io.FileNotFoundException;
 import java.io.FileReader;
+import java.io.FileWriter;
 import java.io.IOException;
 import javax.mail.MessagingException;
 import javax.swing.JFileChooser;
 import javax.swing.JOptionPane;
 import javax.swing.filechooser.FileNameExtensionFilter;
+import procedure.process;
 import procedure.sendEmail;
 
 /**
@@ -22,9 +25,9 @@ import procedure.sendEmail;
 public class Main {
 
     static Student studentData[];
-    static boolean exit = false;
-    static String[] data;
-
+    static Student studentGroupsData[];
+    
+    
     /**
      * @param args the command line arguments
      * @throws java.io.FileNotFoundException
@@ -32,15 +35,7 @@ public class Main {
      */
     public static void main(String[] args) throws FileNotFoundException, IOException, MessagingException {
 
-        menu(exit);
-    }
-
-    public static void menu(boolean exit) throws IOException, MessagingException {
-        exit = false;
         int cases;
-        if (exit = false) {
-
-        }
         do {
             String posi = JOptionPane.showInputDialog(null, "Digite la opción 1"
                     + " si desea cargar el archivo \nDigite la opcion 2 si desea "
@@ -57,44 +52,27 @@ public class Main {
                     txtReader();
                     break;
                 case 2:
-                    seeStudents(studentData, 0);
+                    for (int i = 0; i < studentData.length; i++) {
+                        System.out.println(studentData[i].toString());
+                    }
+
                     System.out.println(" ");
                     break;
                 case 3:
-
+                        groupMenu();
                     break;
                 case 4:
                     sendEmail.sendMail();
                     break;
                 case 5:
-                    exit = true;
                     System.out.println("gracias");
-
                     break;
 
             }
-menu(exit = true);
-        } while (exit = false);
-        
 
+        } while (cases != 5);
     }
-/**
- * Procedimiento para poder ver a los datos de los estudiantes.
- * @param studentData
- * @param i 
- */
-    public static void seeStudents(Student studentData[], int i) {
-        if (i != studentData.length) {
-            System.out.println(studentData[i].toString());
-            seeStudents(studentData, i + 1);
-        }
 
-    }
-/**
- * Procedimiento para elegir un archivo.
- * @throws FileNotFoundException
- * @throws IOException 
- */
     public static void txtReader() throws FileNotFoundException, IOException {
 
         JFileChooser chooser = new JFileChooser();
@@ -106,12 +84,7 @@ menu(exit = true);
         System.out.println("Se subio el registro");
         split(chooser.getSelectedFile());
     }
-/**
- * Procedimiento para dividir un archivo y guardarlo en un array.
- * @param chooser
- * @throws FileNotFoundException
- * @throws IOException 
- */
+
     public static void split(File chooser) throws FileNotFoundException, IOException {
         int i = 0;
         String strCurrentLine;
@@ -121,8 +94,9 @@ menu(exit = true);
             try {
                 String[] data;
                 data = strCurrentLine.split(",");
-                Student student = new Student(data[0], data[1], data[2], data[3], data[4]);
+                Student student = new Student(data[0], data[1], data[2], data[3], data[4], false);
                 studentData = newVector(student, i);
+                studentGroupsData = newVector(student, i);
                 i++;
             } catch (Exception e) {
                 System.out.println(e.getMessage());
@@ -131,12 +105,7 @@ menu(exit = true);
         }
 
     }
-/**
- * Procedimiento para copiar un archivo y aumentar el tamaño del vector.
- * @param student
- * @param i
- * @return 
- */
+
     private static Student[] newVector(Student student, int i) {
 
         Student[] copyStudend = new Student[i + 1];
@@ -149,9 +118,12 @@ menu(exit = true);
         }
         return copyStudend;
     }
-/**
- * Procedimiento para poder visualizar un menu para los grupos de estudiantes.
- */
+
+    
+    
+    
+    
+    
     public static void groupMenu() {
         int op;
         do {
@@ -164,9 +136,11 @@ menu(exit = true);
             op = Integer.parseInt(posi);
 
             switch (op) {
-
+                    
                 case 1:
-
+                       
+                    groupCreationMenu();
+                    
                     break;
                 case 2:
 
@@ -183,5 +157,139 @@ menu(exit = true);
         } while (op != 4);
 
     }
+    
+    
+    
+    public static void groupCreationMenu()  {
+        int op2;
 
+        
+        
+        do {
+            String posi = JOptionPane.showInputDialog(null, "Digite la opción 1"
+                    + " para generar grupos de forma aleatoria \nDigite la opcion 2 para "
+                    + "generar grupos por genero \nDigite la opcion 3 para formar"
+                    + " grupos por ubicación geografica \nDigite la opcion 4 para"
+                    + " grupos por carnet \nDigite la opcion 5 para volver "
+                    + " al menu anterior");
+
+            op2 = Integer.parseInt(posi);
+
+            switch (op2) {
+                    
+                case 1:
+                    try {
+
+                        groupAssigment(groupCreation());
+                
+                } catch (Exception e) {
+                        System.out.println(e.getMessage());
+                }
+                 
+                    break;
+
+                case 2:
+
+                    break;
+                case 3:
+
+                    break;
+                case 4:
+                    System.out.println("gracias");
+                    break;
+
+            }
+
+        } while (op2 != 5);
+
+    }
+    
+    public static Student[] groupCreation (){
+ 
+        int j = 0;
+        Student[] copyArray = new Student[studentData.length];
+
+        for (int i = 0; i < studentData.length; i++) {
+            studentData[i].setState(false);
+        }
+        
+        while (inspect()) {            
+            
+            int randomStudent=(int)(Math.random() * copyArray.length);
+            if (studentData[randomStudent].isState()==false) {
+                
+                studentData[randomStudent].setState(true);
+                
+                copyArray[j]= studentData[randomStudent];
+                j++;
+                
+            }
+        }
+    return copyArray;
+    }
+ 
+    public static boolean inspect() {
+        boolean find = false;
+        
+        for (int i = 0; i < studentData.length; i++) {
+            if (studentData[i].isState()==false) {
+             find = true;   
+                
+            }
+        }
+        return find;
+    }
+    
+   public static void groupAssigment (Student copyArray[]) throws IOException{
+   
+   String cantGroups = JOptionPane.showInputDialog(null, "Digite la cantidad de "
+           + "grupos que desea formar");
+    int cantG = Integer.parseInt(cantGroups);   
+    
+    JFileChooser chooser = new JFileChooser();
+    int initiate =0;
+    int finalize = (copyArray.length / cantG);
+    int z = copyArray.length % cantG;
+    Component parent = null;
+    
+    int returnVal = chooser.showSaveDialog(parent);
+        if (returnVal == JFileChooser.APPROVE_OPTION) {
+            
+            try {
+                File h = chooser.getSelectedFile();
+                FileWriter write = new FileWriter(h, true);
+                          
+            for (int i = 0; i < cantG; i++) {
+            write.write("Grupo de trabajo: "+ (i + 1) + "\n");
+                 if ((i+1)==1) {
+                    for (int x = copyArray.length - z; x < copyArray.length; x++) {
+                    write.write("Nombre: " + copyArray[x].getName() + " carnet: " + copyArray[x].getStudentId() + "\n");
+                }
+             }
+                for (int j = initiate; j < finalize; j++) {
+                    write.write("Nombre: " + copyArray[j].getName() + " carnet: " + copyArray[j].getStudentId() + "\n");
+                }
+                initiate += copyArray.length / cantG;
+                finalize += copyArray.length / cantG;
+                write.write("\n");
+  
+                
+            }
+            write.close();
+            JOptionPane.showMessageDialog(null, "Grupos guardados exitosamente");
+            
+            } catch (Exception e) {
+                System.out.println(e.getMessage());
+            }
+            }
+   
+   
+   }
+   
+   
+   
+   
+   
+   
+   
 }
