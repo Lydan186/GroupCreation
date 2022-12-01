@@ -22,6 +22,13 @@ public class process {
     static Student studentGroupsData[];
     static Student studentData[];
 
+    /**
+     * Procedimiento menu encardado de generar el menu principal que brindara 
+     * todas las opciones al usuario sobre lo que desea realizar
+     * @param i
+     * @throws IOException
+     * @throws MessagingException 
+     */
     public static void menu(int i) throws IOException, MessagingException {
 
         int cases;
@@ -64,6 +71,11 @@ public class process {
 
     }
 
+    /**
+     * procedimiento encargado de imprimir la lista de estudiantes
+     * @param studentData
+     * @param i 
+     */
     public static void seeStudents(Student studentData[], int i) {
         if (i != studentData.length) {
             System.out.println(studentData[i].getName());
@@ -72,6 +84,12 @@ public class process {
 
     }
 
+    /**
+     * Procedimiento txtReader encardado de de permitir al usuario de elegir
+     * el archivo con los datos de los estudiantes con los cuales va a trabajar
+     * @throws FileNotFoundException
+     * @throws IOException 
+     */
     public static void txtReader() throws FileNotFoundException, IOException {
 
         JFileChooser chooser = new JFileChooser();
@@ -84,6 +102,13 @@ public class process {
         split(chooser.getSelectedFile());
     }
 
+    /**
+     * procedimiento split que realiza la divicion de cada dato en el 
+     * archivo txt
+     * @param chooser
+     * @throws FileNotFoundException
+     * @throws IOException 
+     */
     public static void split(File chooser) throws FileNotFoundException, IOException {
         int i = 0;
         String strCurrentLine;
@@ -105,6 +130,13 @@ public class process {
 
     }
 
+    /**
+     * newVector se encarga de realizar una copia de los datos del txt para 
+     * almacenarlos en un array
+     * @param student
+     * @param i
+     * @return 
+     */
     private static Student[] newVector(Student student, int i) {
 
         Student[] copyStudend = new Student[i + 1];
@@ -118,13 +150,17 @@ public class process {
         return copyStudend;
     }
 
-    public static void groupMenu() {
+    /**
+     * groupMEnu Se encargar de gestionar las opciones a la hora de gestionar los
+     * grupos
+     * @throws IOException 
+     */
+    public static void groupMenu() throws IOException {
         int op;
         do {
             String posi = JOptionPane.showInputDialog(null, "Digite la opción 1"
                     + " si desea crear un grupo de trabajo \nDigite la opcion 2 si desea "
-                    + "ver la lista de grupos formados \nDigite la opcion 3 si desea"
-                    + " editar algunos de los grupos disponibles \nDigite la opcion 4 si"
+                    + "ver la lista de algun grupo formado \nDigite la opcion 4 si"
                     + " desea volver al menu principal");
 
             op = Integer.parseInt(posi);
@@ -137,21 +173,23 @@ public class process {
 
                     break;
                 case 2:
-
+                    
+                    readGroup();
                     break;
                 case 3:
-
-                    break;
-                case 4:
                     System.out.println("gracias");
                     break;
 
             }
 
-        } while (op != 4);
+        } while (op != 3);
 
     }
 
+    /**
+     * Menu creado para poder realizar de distintas formas los grupos de 
+     * estudiantes
+     */
     public static void groupCreationMenu() {
         int op2;
 
@@ -160,8 +198,7 @@ public class process {
                     + " para generar grupos de forma aleatoria \nDigite la opcion 2 para "
                     + "generar grupos por genero \nDigite la opcion 3 para formar"
                     + " grupos por ubicación geografica \nDigite la opcion 4 para"
-                    + " grupos por carnet \nDigite la opcion 5 para volver "
-                    + " al menu anterior");
+                    + " para volver al menu anterior");
 
             op2 = Integer.parseInt(posi);
 
@@ -179,10 +216,12 @@ public class process {
                 break;
 
                 case 2:
+                    JOptionPane.showMessageDialog(null, "Selecione el archivo "
+                            + "txt con el grupo que desea verificar");
                     groupGender(studentData);
                     break;
                 case 3:
-
+                    geographicalGroup(studentData);
                     break;
                 case 4:
                     System.out.println("gracias");
@@ -190,10 +229,15 @@ public class process {
 
             }
 
-        } while (op2 != 5);
+        } while (op2 != 4);
 
     }
 
+    /**
+     * Proceso groupCreation que genera un txt con la cantidad de grupos deseados
+     * en los cuales se formaran por estudiantes aleatorios
+     * @return 
+     */
     public static Student[] groupCreation() {
 
         int j = 0;
@@ -218,6 +262,11 @@ public class process {
         return copyArray;
     }
 
+    /**
+     * verifica el estado bo0oleano del estudiante para poder ser añadido a un
+     * grupo
+     * @return 
+     */
     public static boolean inspect() {
         boolean find = false;
 
@@ -230,6 +279,12 @@ public class process {
         return find;
     }
 
+    /**
+     * procedimiento principal de la formacion de grupos aleatorios en el cual 
+     * se pide la cantidad de grupos que se formaran y crear el txt del grupo
+     * @param copyArray
+     * @throws IOException 
+     */
     public static void groupAssigment(Student copyArray[]) throws IOException {
 
         String cantGroups = JOptionPane.showInputDialog(null, "Digite la cantidad de "
@@ -274,7 +329,10 @@ public class process {
 
     }
     
-    
+    /**
+     * proceso para crear grupos con forme al genero de los estudiantes
+     * @param student 
+     */
      public static void groupGender(Student[] student){
          
          
@@ -319,32 +377,120 @@ public class process {
         }
     }
          
-         
-         
-         
-         
-         
-         
-         
-         
-         
-         
-         
-         
-         
-         
-         
-         
-         
-         
-         
-             
-             
-            
                                    
      }
     
-    
-    
+    /**
+     * procedimiento para crear los grupos de estudiantes en base a su ubicacion 
+     * geografica
+     * @param student 
+     */
+           public static void geographicalGroup(Student[] student){
+        
+        JFileChooser chooser = new JFileChooser(); 
+        Component parent = null;
+        int returnVal = chooser.showSaveDialog(parent);
+        if (returnVal == JFileChooser.APPROVE_OPTION) {
+            
+            try {
+            File h = chooser.getSelectedFile();
+             FileWriter write=new FileWriter(h,true);
 
-}
+            
+            write.write(("Grupos por ubicacion Geografica: "+ "\n" ));
+                          
+             write.write("Grupo: Golfito" + "\n");
+              
+             for (int j = 0; j < studentData.length; j++) {
+                 
+                 if (((studentData[j].getGeographicLocation()).equals("Golfito"))) {
+                    write.write("Nombre: " + studentData[j].getName() + "    Carnet: " + studentData[j].getStudentId()+"\n");
+                 }
+                       
+             }   
+             write.write("\n");
+ 
+            write.write("Grupo: Rio Claro"+"\n");
+              
+             for (int j = 0; j < studentData.length; j++) {
+                 
+                 if (((studentData[j].getGeographicLocation()).equals("Rio Claro"))) {
+                    write.write("Nombre: " + studentData[j].getName() + "    Carnet: " + studentData[j].getStudentId()+"\n");
+                 }
+                       
+             }   
+             write.write("\n");
+             
+             
+              write.write("Grupo: Corredores"+"\n");
+              
+             for (int j = 0; j < studentData.length; j++) {
+                 
+                 if (((studentData[j].getGeographicLocation()).equals("Corredores"))) {
+                    write.write("Nombre: " + studentData[j].getName() + "    Carnet: " + studentData[j].getStudentId()+"\n");
+                 }
+                       
+             }   
+             write.write("\n"); 
+             
+             write.write("Grupo: San vito"+"\n");
+              
+             for (int j = 0; j < studentData.length; j++) {
+                 
+                 if (((studentData[j].getGeographicLocation()).equals("San vito"))) {
+                    write.write("Nombre: " + studentData[j].getName() + "    Carnet: " + studentData[j].getStudentId()+"\n");
+                 }
+                       
+             }   
+             write.write("\n"); 
+             
+            write.close();
+        } catch (Exception e) {
+            System.out.println(e.getMessage());
+            System.out.println("-------------------------------------------");
+        }
+    }
+        
+            }
+           
+           /**
+            * proceso para leer e imprimir un grupo ya formado
+            * @throws IOException 
+            */
+public static void readGroup() throws IOException{
+            
+JFileChooser chooser = new JFileChooser();
+        chooser.setFileSelectionMode(JFileChooser.FILES_AND_DIRECTORIES);
+        FileNameExtensionFilter txtFilter = new FileNameExtensionFilter("txt", "txt");
+        chooser.setFileFilter(txtFilter);
+        chooser.showOpenDialog(chooser);
+        chooser.getSelectedFile();
+        System.out.println("Se subio el registro");
+        
+        String strCurrentLine;
+        int i=0;
+        BufferedReader objReader = new BufferedReader(new FileReader(chooser.getSelectedFile()));
+        while ((strCurrentLine = objReader.readLine()) != null) {
+            try {
+                String[] data;
+              //
+              System.out.println(strCurrentLine);
+                i++;
+            } catch (Exception e) {
+                System.out.println(e.getMessage());
+            }
+
+        }
+
+   }
+
+          
+            }
+           
+           
+           
+     
+           
+
+
+
