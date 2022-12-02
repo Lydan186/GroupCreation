@@ -5,24 +5,34 @@
 package project2;
 
 /**
+ * Esta clase guarda los constructores de los estudiantes.
  *
  * @author dilan
  */
-public class Student{
-    
+public class Student {
+
     private boolean state;
-    
+
     private String email;
-    private String name;
     private String gender;
-    private String studentId;
     private String geographicLocation;
+    private String name;
+    private String studentId;
 
     public Student() {
     }
 
-    public Student( String studentId,String name, String email,  String gender,String geographicLocation, boolean state) {
-        
+    /**
+     *Constructor encargado de llamar todas las variables.
+     * @param studentId Carnet de estudiante.
+     * @param name Nombre.
+     * @param email Correo electronico.
+     * @param gender Genero.
+     * @param geographicLocation Ubicación geografica.
+     * @param state Estado.
+     */
+    public Student(String studentId, String name, String email, String gender, String geographicLocation, boolean state) {
+
         this.state = state;
         this.email = email;
         this.name = name;
@@ -32,6 +42,8 @@ public class Student{
     }
 
     /**
+     * Constructor encargado de obtener el booleano de state.
+     *
      * @return the state
      */
     public boolean isState() {
@@ -39,6 +51,8 @@ public class Student{
     }
 
     /**
+     * Constructor encargado de establecer el state.
+     *
      * @param state the state to set
      */
     public void setState(boolean state) {
@@ -46,6 +60,8 @@ public class Student{
     }
 
     /**
+     * Constructor encargado de obtener el email.
+     *
      * @return the email
      */
     public String getEmail() {
@@ -53,6 +69,8 @@ public class Student{
     }
 
     /**
+     * Constructor encargado de establecer el email.
+     *
      * @param email the email to set
      */
     public void setEmail(String email) {
@@ -60,6 +78,8 @@ public class Student{
     }
 
     /**
+     * Constructor encargado de obtener el name.
+     *
      * @return the name
      */
     public String getName() {
@@ -67,6 +87,8 @@ public class Student{
     }
 
     /**
+     * Constructor encargado de establecer el name.
+     *
      * @param name the name to set
      */
     public void setName(String name) {
@@ -74,6 +96,8 @@ public class Student{
     }
 
     /**
+     * Constructor encargado de obtener el gender.
+     *
      * @return the gender
      */
     public String getGender() {
@@ -81,6 +105,8 @@ public class Student{
     }
 
     /**
+     * Constructor encargado de establecer el gender.
+     *
      * @param gender the gender to set
      */
     public void setGender(String gender) {
@@ -88,6 +114,8 @@ public class Student{
     }
 
     /**
+     * Constructor encargado de obtener el studentId.
+     *
      * @return the studentId
      */
     public String getStudentId() {
@@ -95,6 +123,8 @@ public class Student{
     }
 
     /**
+     * Constructor encargado de establecer el studentId.
+     *
      * @param studentId the studentId to set
      */
     public void setStudentId(String studentId) {
@@ -102,6 +132,8 @@ public class Student{
     }
 
     /**
+     * Constructor encargado de obtener el geographicLocation.
+     *
      * @return the geographicLocation
      */
     public String getGeographicLocation() {
@@ -109,25 +141,22 @@ public class Student{
     }
 
     /**
+     * Constructor encargado de establecer el geographicLocation.
+     *
      * @param geographicLocation the geographicLocation to set
      */
     public void setGeographicLocation(String geographicLocation) {
         this.geographicLocation = geographicLocation;
     }
 
+    /**
+     * Constructor encargado de sobreescribir los datos de las variables.
+     *
+     * @return Los datos ya sobreescritos.
+     */
     @Override
     public String toString() {
-        return " Carnet: " + studentId + ", Nombre; " + name + ", Correo Institucional: " + email +  ", Genero: " + gender +  ", Ubicación Geografica" + geographicLocation;
+        return " Carnet: " + studentId + ", Nombre; " + name + ", Correo Institucional: " + email + ", Genero: " + gender + ", Ubicación Geografica" + geographicLocation;
     }
-
-    void getState(boolean b) {
-        throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
-    }
-
-    void isState(boolean b) {
-        throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
-    }
-
-    
 
 }

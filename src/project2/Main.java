@@ -4,39 +4,44 @@
  */
 package project2;
 
-import java.awt.Component;
-import java.io.BufferedReader;
-import java.io.File;
 import java.io.FileNotFoundException;
-import java.io.FileReader;
-import java.io.FileWriter;
 import java.io.IOException;
 import javax.mail.MessagingException;
-import javax.swing.JFileChooser;
 import javax.swing.JOptionPane;
-import javax.swing.filechooser.FileNameExtensionFilter;
-import procedure.process;
 import static procedure.process.menu;
-import procedure.sendEmail;
 
 /**
+ * En este programa se realiza, una lectura de un txt elegido por el usuario,
+ * además de la creación de grupos y el envio por email.
  *
  * @author dilan
+ * @author Jose Pablo
  */
 public class Main {
 
+    static int i;
+
     static Student studentData[];
     static Student studentGroupsData[];
-    static int i = 0;
 
     /**
+     * Aqui se encuentra en donde se llama al menu en donde se ejecuta el
+     * programa
+     *
      * @param args the command line arguments
-     * @throws java.io.FileNotFoundException
-     * @throws javax.mail.MessagingException
+     * @throws java.io.FileNotFoundException Por si no encuentra el archivo que
+     * se anda buscando.
+     * @throws javax.mail.MessagingException Por el metodo de mandar mensajes
+     * por correo electronico.
      */
-    public static void main(String[] args) throws FileNotFoundException, IOException, MessagingException {
-
+    public static void main(String[] args) throws FileNotFoundException,
+            IOException, MessagingException {
+        JOptionPane.showMessageDialog(null, "Bienvenido a Sibajitas Creating "
+                + "Systems");
         menu(i);
+        JOptionPane.showMessageDialog(null, "Gracias por usar el programa, "
+                + "hasta pronto");
+
     }
 
 }
