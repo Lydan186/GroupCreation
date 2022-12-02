@@ -20,12 +20,13 @@ import project2.Student;
  * @author josep
  */
 public class process {
-
-    static Student studentData[];
-    static Student studentGroupsData[];
     static int cases;
     static int op;
     static int op2;
+
+    static Student studentData[];
+    static Student studentGroupsData[];
+
 
     /**
      * Procedimiento menu encardado de generar el menu principal que brindara
@@ -39,13 +40,17 @@ public class process {
     public static void menu(int i) throws IOException, MessagingException {
         try {
 
-            String posi = JOptionPane.showInputDialog(null, "Digite la opción que "
+            String posi = JOptionPane.showInputDialog(null, "Digite la opción "
+                    + "que "
                     + "desea utilizar \nDigite la opción 1"
-                    + " si desea cargar el archivo \nDigite la opcion 2 si desea "
-                    + "ver la lista de estudiantes \nDigite la opcion 3 si desea"
+                    + " si desea cargar el archivo \nDigite la opcion 2 si "
+                    + "desea "
+                    + "ver la lista de estudiantes \nDigite la opcion 3 si "
+                    + "desea"
                     + " hacer los grupos de estudiantes \nDigite la opcion 4 "
                     + " para enviar un correo con el archivo con los grupos"
-                    + " \nDigite la opción 5 si desea leer el manual de usuario. \n"
+                    + " \nDigite la opción 5 si desea leer el manual de "
+                    + "usuario. \n"
                     + "Digite la opcion 6 si desea salir del programa");
 
             cases = Integer.parseInt(posi);

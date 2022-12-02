@@ -28,19 +28,19 @@ import javax.swing.JOptionPane;
  */
 public class sendEmail {
 
-    static String email = "programacion1javamail@gmail.com";
-    static String password = "wdsvhouvpnlshako";
-    static String destinyMail = "";
-    static String route;
-    static String message;
     static String affair;
+    static String destinyMail = "";
+    static String email = "programacion1javamail@gmail.com";
+    static String message;
+    static String password = "wdsvhouvpnlshako";
+    static String route;
 
     /**
      * Procedimiento encargado para realizar el envio del correo electronico
-     * junto al archivo txt con los grupos formados 
-     * L-Code.(19 de setiembre de 2022).Enviar correos desde Java 📧 | Gmail | 2022 [Video].
-     * https://youtu.be/ZggjlwLzrxg 
-     * Java y Otros.(22 de julio de 2021). Enviar Correos Desde Java | Sin Archivos Adjuntos Y Con Archivos Adjuntos | 2021
+     * junto al archivo txt con los grupos formados L-Code.(19 de setiembre de
+     * 2022).Enviar correos desde Java 📧 | Gmail | 2022 [Video].
+     * https://youtu.be/ZggjlwLzrxg Java y Otros.(22 de julio de 2021). Enviar
+     * Correos Desde Java | Sin Archivos Adjuntos Y Con Archivos Adjuntos | 2021
      * [Video]. https://youtu.be/s5RYPoQTXBg
      *
      * @throws AddressException Por si se equivoca al digitar el correo
